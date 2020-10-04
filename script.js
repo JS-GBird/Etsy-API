@@ -1,5 +1,5 @@
 (function(fctn) {
-    fctn = getlistings('waardevolthuis', 'title,price,url', 250, 'large');
+    fctn = getlistings('waardevolthuis', 'title,price,url,description', 250, 'large');
 })();
 
 
@@ -18,32 +18,48 @@ function getlistings(shopname, params, limit) {
 
                 title = result[i].title.split(' / '); // Define the title and split it
                 shortTitle = title[0]; // Choose first title
+                description = result[i].description.slice(0, 160) + '...';
+                console.log(description);
 
                 image = result[i].MainImage.url_570xN; // Define the image
                 url = result[i].url; // Define product url
                 price = result[i].price // Define the price
                 
-                // Create DIV > Product with ID > Product
+                // Create DIV for Product
                 elemsProduct = document.createElement('div'); // Add div
-                elemsProduct.setAttribute('id', 'product' + [i]); // Add id
+                elemsProduct.setAttribute('id', 'product-' + [i]); // Add id
                 elemsProduct.setAttribute('class', 'products');
-                document.body.appendChild(elemsProduct); // Append to body
-                // Create DIV > Image with ID > Image
+                document.getElementById('feed-container').appendChild(elemsProduct); // Append to "feed-container"
+
+                // Create DIV for Image
                 elemsImage = document.createElement('div'); // Add div
-                elemsImage.setAttribute('id', 'image' + [i]); // Add id
+                elemsImage.setAttribute('id', 'image-' + [i]); // Add id
                 elemsImage.setAttribute('class', 'images');
-                document.getElementById('product' + [i]).appendChild(elemsImage); // Append to "product"
-                // Create DIV > Title with ID > Title
+                document.getElementById('product-' + [i]).appendChild(elemsImage); // Append to "product"
+
+                // Create DIV for Title
                 elemsTitle = document.createElement('div'); // Add div
-                elemsTitle.setAttribute('id', 'title' + [i]); // Add id
+                elemsTitle.setAttribute('id', 'title-' + [i]); // Add id
                 elemsTitle.setAttribute('class', 'titles');
-                document.getElementById('product' + [i]).appendChild(elemsTitle); // Append to "product"
+                document.getElementById('product-' + [i]).appendChild(elemsTitle); // Append to "product"
 
-                // Add image to the correct DIV
-                document.getElementById('image' + [i]).innerHTML = '<a href="' + url + '"><img src="' + image + '"></img></a>';
+                // Create DIV for Description
+                elemsTitle = document.createElement('div'); // Add div
+                elemsTitle.setAttribute('id', 'description-' + [i]); // Add id
+                elemsTitle.setAttribute('class', 'descriptions');
+                document.getElementById('product-' + [i]).appendChild(elemsTitle); // Append to "product"
 
-                // Add title to the correct DIV
-                document.getElementById('title' + [i]).innerHTML = '<h3>' + shortTitle + '</h3><p class="price">' + price + '</p>';
+                // Create DIV for Price
+                elemsTitle = document.createElement('div'); // Add div
+                elemsTitle.setAttribute('id', 'price-' + [i]); // Add id
+                elemsTitle.setAttribute('class', 'prices');
+                document.getElementById('product-' + [i]).appendChild(elemsTitle); // Append to "product"
+
+                // Add variable data to the correct DIV
+                document.getElementById('image-' + [i]).innerHTML = '<a href="' + url + '"><img src="' + image + '"></img></a>'; // Image
+                document.getElementById('title-' + [i]).innerHTML = '<h3>' + shortTitle + '</h3>'; // Title
+                document.getElementById('description-' + [i]).innerHTML = '<p>' + description + '</p>'; // Description
+                document.getElementById('price-' + [i]).innerHTML = '<p>&euro; ' + price + '</p>'; // Price
             }
         });
     });

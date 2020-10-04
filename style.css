@@ -3,3 +3,46 @@ div.image {
     display: block;
     margin-right: 5px;
 }
+
+/* Selects the feed container */
+.container {
+    padding: 20px;
+    max-width: 1180px;
+    left: 50%;
+    right: 50%;
+    margin: auto;
+}
+
+/* Selects the products */
+.products {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    vertical-align: top;
+    padding: 10px
+}
+
+/* Selects the prices */
+.prices {
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 0 10%;
+}
+
+/* Selects the descriptions */ 
+.descriptions {
+    font-size: 1em;
+    padding: 0 10%;
+}
+
+/* Selects the titles */
+.titles {
+    font-size: 1.1em;
+    width: auto;
+    padding: 0 10%;
+}
+
+/* Selects the images */
+.images img {
+    max-width: 100%;
+}
