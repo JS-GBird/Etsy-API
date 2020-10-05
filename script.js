@@ -1,5 +1,5 @@
 (function(fctn) {
-    fctn = getlistings('waardevolthuis', 'title,price,url,description', 250, 'large');
+    fctn = getlistings('waardevolthuis', 'title,price,url,description,language', 250, 'large');
 })();
 
 
@@ -9,7 +9,7 @@ function getlistings(shopname, params, limit) {
         apiKey = "bwttmouuhdydog2vzjj1iu6r";
         etsy_url = "https://openapi.etsy.com/v2/shops/" + shopname + "/listings/active.js?";
         etsy_url += "fields=" + params + "&limit=" + limit + "&includes=MainImage&api_key=" + apiKey;
-        // console.log (etsy_url);
+     console.log (etsy_url);
         // loop through results and add the listings
 
         $.getJSON(etsy_url + "&callback=?", function (data) {
@@ -19,7 +19,6 @@ function getlistings(shopname, params, limit) {
                 title = result[i].title.split(' / '); // Define the title and split it
                 shortTitle = title[0]; // Choose first title
                 description = result[i].description.slice(0, 160) + '...';
-                console.log(description);
 
                 image = result[i].MainImage.url_570xN; // Define the image
                 url = result[i].url; // Define product url
